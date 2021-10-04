@@ -8,20 +8,61 @@ import NewComponente from './HelloWorld';
  * Ha 2 maneiras de criar um componente:
  *  - Funcao JS
  *  - Classe JS
+ * Geralmente cada componente tem seu proprio arquivo.
 */
+
 function App() {
+
+  function clicou(){
+    alert("Clicaste?");
+  }
+
+  function clicou2(exibicao){
+    alert(exibicao);
+  }
+
+  //Uma variavel pode armazenar uma funcao
+  const funcao = () => {
+    alert("Mar tu clica demais");
+  }
+
   return (
     <div>
       <Title></Title>
       <Title/> 
-      <NewComponente></NewComponente>
+      <NewComponente/>
+      
+      {/* Usando uma funcao dentro da tag JSX */}
+      <button onClick={clicou}>Clique aqui</button>
+    
+      {/* Usando uma arrow function*/}
+      <button 
+        onClick={() => {
+          alert("Clicaste mermo?");
+        }}
+      >
+        Clique denovo
+      </button>
+
+      {/* Usando uma variavel que armazena uma funcao*/}
+      <button onClick={funcao}>Vai clicar?</button>
+
+      {/* Usando uma funcao que recebe um parametro */}
+      <button onClick={() => clicou2("Previsível")}>
+        Só mais uma, vai
+      </button>
+
     </div>
   );
 }
 
 //Novo componente
 function Title(){
-  return <h1>Hello World</h1>;
+  const frase = "Hello World!";
+  const numero = 40;
+
+  //Dentro das {} tudo eh JS 
+  return <h1>{frase} {numero}</h1>;
 }
 
 export default App;
