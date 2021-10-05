@@ -27,6 +27,7 @@ function App() {
     alert("Mar tu clica demais");
   }
 
+  //--- EXEMPLOS DE: VETORES ---//
   let vetor1 = [1, 2, 3, "string", 4, 5, 6];
 
   function clicou1(){
@@ -71,6 +72,43 @@ function App() {
     console.log(numeros);
   }
 
+  //--- EXEMPLOS DE: OBJETOS E JSON ---//
+  //amo json rs
+  const endereco = {
+    rua: "Petunias",
+    numero: 1012,
+    cidade: "Padimina",
+  }
+
+  const pessoa = {
+    nome: "Pedro",
+    idade: 19,
+    endereco: endereco,
+    notasFaculdade: [1, 0, 12, 0, 15],
+  }
+
+  function clicouObj(obj){
+    console.log(obj);
+  }
+
+  //Retorna um vetor com os nomes das chaves JSON
+  let key = Object.keys(pessoa);
+
+  //Muda o valor de um elemento
+  pessoa.nome = "Pedro Luis";
+
+  //Adiciona novo elemento
+  pessoa.comidaFav = "farofa";
+
+  //Deleta um campo
+  delete pessoa.nome;
+
+  function clicouObj2(obj){
+    key.forEach((elemento) => {
+      console.log(pessoa[elemento]);
+    });
+  }
+
   return (
     <div>
       <Title></Title>
@@ -107,9 +145,17 @@ function App() {
 
       <button onClick={clicou4}>clicou4</button>
 
+      <h1>Testando objetos</h1>
+
+      <button onClick={() => clicouObj(pessoa)}>clicouObj</button>
+      <h2>Hello {pessoa.nome}</h2>
+      <h2>Hello {pessoa["nome"]}</h2>
+      
+      <button onClick={() => clicouObj2(pessoa)}>clicouObj2</button>
+
       </div>
-    );
-  }
+  );
+}
 
 //Novo componente
 
