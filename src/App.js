@@ -7,6 +7,9 @@ function App() {
   // - [1] = funcao set da variavel
   //ja atribuimos cada um deles a uma variavel
 
+  //Usar newVet = [...vet]; ou newObj = {...obj} eh o mesmo que
+  //criar uma copia da estrutura em questao
+
   //useState permite usar e trocar o valor das variáveis dinamicamente
   const [membro, setMembro] = useState({});
 
@@ -18,6 +21,33 @@ function App() {
 
     setMembro(newMembro);
   }
+
+  //Usando useState para arrays, e eh o evento 
+  const [ingredientes, setIngredientes] = useState([]);
+  function handleVectorState(e){
+
+    const value = e.target.value;
+    const newIngredientes = [...ingredientes];
+    const index = ingredientes.indexOf(value);
+
+    /**Se o checkbox for acionado e seu valor nao estiver no vetor,
+     * adiciona. Se estiver no vetor, deleta.
+     */
+    if(index=== -1){
+      
+      //Essa op add um valor ao final de um vetor 
+      //const newIngredientes = [...ingredientes, value];
+      newIngredientes.push(value);
+    }
+
+    else{
+      //Splice deleta elementos do vetor 
+      //splice(<primeiro element a deletar>, <qnts a partir dele deletar>)
+      newIngredientes.splice(index, 1);
+    }
+    
+    setIngredientes(newIngredientes);
+  } 
 
   return (
     <div>
@@ -105,6 +135,46 @@ function App() {
       <p>Turno: {membro.turno}</p>
       <p>Estado: {membro.estado}</p>
       <p>Cidade: {membro.cidade}</p>
+
+      <h1>Ingredientes da Pizza</h1>
+      <input
+      id="Pepperoni"
+      type="checkbox"
+      value="Pepperoni"
+      onChange={handleVectorState}/>
+      <label htmlFor="Pepperoni">Pepperoni</label>
+      <br/>
+      <input
+      id="Queijo"
+      type="checkbox"
+      value="Queijo"
+      onChange={handleVectorState}/>
+      <label htmlFor="Queijo">Queijo</label>
+      <br/>
+      <input
+      id="Frango"
+      type="checkbox"
+      value="Frango"
+      onChange={handleVectorState}/>
+      <label htmlFor="Frango">Frango</label>
+      <br/>
+      <input
+      id="Catupiry"
+      type="checkbox"
+      value="Catupiry"      
+      onChange={handleVectorState}/>
+      <label htmlFor="Catupiry">Catupiry</label>
+      <br/>
+      <input
+      id="Molho de Tomate"
+      type="checkbox"
+      value="Molho de Tomate"
+      onChange={handleVectorState}/>
+      <label htmlFor="Molho de Tomate">Molho de Tomate</label>
+      <br/>
+
+      <h2>Selecionados: </h2>
+      <p>{ingredientes.join(" ")}</p>
     </div>
   )
 }
