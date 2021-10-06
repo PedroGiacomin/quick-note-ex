@@ -18,21 +18,25 @@ function Selecionados({selecionados}){
 
         setIngredientes(newIngredientes);
 
-        if(selecionados.length >= 3){
-            setShowWarning(true);
-        }
-
-        else{
-            setShowWarning(false);
-        }
+        setShowWarning(selecionados.length >= 3);
 
     }, [selecionados])
     //Passa como parametro O QUE o useEffect vai monitorar
 
+    //Usa map para retornar os ingredientes como uma lista
     return(
         <div>
             <h3>Selecionados</h3>
-            <p>{ingredientes.join(" ")}</p>
+            <ul>
+                {ingredientes.map((ingrediente, index) => {
+                    return(
+                        <li key={index}>{ingrediente}</li>
+                    )
+                })}
+            </ul>
+
+
+
             {/*Logica para exibir ou nao uma parte do codigo html*/}
             {showWarning && <h4>Número máximo de ingredientes atingido</h4>}
         </div>
