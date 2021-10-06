@@ -13,8 +13,12 @@ import Home from "./Pages/Home";
  * estamos em certa pagina.
  *   
  * Cada componente Route recebe dois parametros:
- *      - path: o que vai ser colocado no navegador pra ir praquela pagina
- *      - component: qual componente, criado por nos, vai renderizar quando estiver nessa rota
+ *  - path: o que vai ser colocado no navegador pra ir praquela pagina
+ *  - component: qual componente, criado por nos, vai renderizar quando estiver nessa rota
+ * 
+ * Duas maneiras de navegar entre as rotas:
+ *  - Componente 'Link', que gera um link para a pagina
+ *  - useHistory, usa dela para navegar entre as paginas, e.g. push e goBack
  */
 
 function Routes(){ 
