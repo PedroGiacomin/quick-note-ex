@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import Selecionados from "./Components/Selecionados";
 
 function App() {
 
+  //----- USESTATE -----//
   //useState retorna um vetor de 2 parametros:
   // - [0] = uma variavel
   // - [1] = funcao set da variavel
@@ -10,6 +12,7 @@ function App() {
   //Usar newVet = [...vet]; ou newObj = {...obj} eh o mesmo que
   //criar uma copia da estrutura em questao
 
+  //----- USESTATE COM OBJETOS -----//
   //useState permite usar e trocar o valor das variáveis dinamicamente
   const [membro, setMembro] = useState({});
 
@@ -22,6 +25,7 @@ function App() {
     setMembro(newMembro);
   }
 
+  //----- USESTATE COM ARRAYS -----//
   //Usando useState para arrays, e eh o evento 
   const [ingredientes, setIngredientes] = useState([]);
   function handleVectorState(e){
@@ -33,7 +37,7 @@ function App() {
     /**Se o checkbox for acionado e seu valor nao estiver no vetor,
      * adiciona. Se estiver no vetor, deleta.
      */
-    if(index=== -1){
+    if(index === -1){
       
       //Essa op add um valor ao final de um vetor 
       //const newIngredientes = [...ingredientes, value];
@@ -45,8 +49,12 @@ function App() {
       //splice(<primeiro element a deletar>, <qnts a partir dele deletar>)
       newIngredientes.splice(index, 1);
     }
-    
+
     setIngredientes(newIngredientes);
+  
+    //----- USEEFFECT -----//
+    //useEffect monitora as mudancas no seu componente
+    
   } 
 
   return (
@@ -173,8 +181,7 @@ function App() {
       <label htmlFor="Molho de Tomate">Molho de Tomate</label>
       <br/>
 
-      <h2>Selecionados: </h2>
-      <p>{ingredientes.join(" ")}</p>
+      <Selecionados selecionados={ingredientes}/>
     </div>
   )
 }
