@@ -1,0 +1,33 @@
+/* display: flex faz com que a tag vire um flex-container
+ * todos as tags filhas sao flex-items. Se colocar display: flex 
+ * na filha ela tambem vira um flex container.*/
+.caixa {
+  display: flex;
+  flex-direction: column;
+  max-width: 423px;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.base{
+  height: 100%;
+  display: flex;
+  /* As duas propriedades alinham segundo a direcao do flex-direction */
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+.logo{
+  margin-bottom: 16px;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px;
+  margin-right: 16px;
+}
