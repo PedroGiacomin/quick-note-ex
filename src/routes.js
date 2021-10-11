@@ -23,16 +23,16 @@ import Home from "./Pages/Home";
 
 function Routes(){ 
 
-    //Estrutura das rotas
-    return(
-        <BrowserRouter>
-            <Switch>
-                <Route path="/login" component={Login}/>
-                <Route path="/cadastro" component={Cadastro}/>
-                <Route path="/home" component={Home}/>
-            </Switch>
-        </BrowserRouter>
-    )
+  //Estrutura das rotas
+  return(
+    <BrowserRouter>
+      <Switch>
+        <Route path="/login" component={Login}/>
+        <Route path="/cadastro" component={Cadastro}/>
+        <Route path="/home" component={Home}/>
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 export default Routes;
