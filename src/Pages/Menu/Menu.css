@@ -1,3 +1,9 @@
 .lista{
   width: 260px;
 }
+
+.headerIcons{
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}

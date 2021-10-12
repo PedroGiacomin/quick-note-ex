@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Typography } from "@material-ui/core"
+import { AppBar, Avatar, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from "@material-ui/core"
 import { IconContext } from "react-icons/lib";
 import { useHistory } from "react-router-dom";
 
-import {MdHome, MdNoteAdd, MdArchive} from "react-icons/md";
+import {MdHome, MdNoteAdd, MdArchive, MdMenu} from "react-icons/md";
 import {IoMdPerson} from "react-icons/io"
+import {FaUserCircle, FaShoppingBag} from "react-icons/fa"
 
 import "./Menu.css"
 
@@ -16,11 +17,17 @@ function Menu(){
 
   const history = useHistory();
   const [currentPage, setCurrentPage] = useState("/home");
+  const [open, setOpen] = useState(false);
 
   //Funcao para ir pra pagina em um clique
   function handleClick(pathName){
     history.push(pathName);
     setCurrentPage(pathName);
+  }
+
+  //Funcao para abrir o menu de navegacao
+  function handleDrawer(isOpen){
+    setOpen(isOpen);
   }
 
   //Cada item da lista vira um objeto do vetor, pois o que muda
@@ -45,33 +52,56 @@ function Menu(){
   ];  
 
   return(
-    <Drawer open={true}>
-      <List className="lista">
 
-        {/**Faz um map para nao ter que repetir o mesmo processo
-          * com todos os itens da lista manualmente */}
-        {itensDaLista.map((item) => {
-          return(
-            <ListItem 
-            button 
-            onClick={() => handleClick(item.pathName)}
-            selected={currentPage === item.pathName}>
-            <ListItemIcon>
-              <IconContext.Provider value={{color: "#343434", size: "1.5em"}}>
-                {item.icon}
-              </IconContext.Provider>
-            </ListItemIcon>
-            <ListItemText>
-              <Typography>
-                {item.text}
-              </Typography>
-            </ListItemText>
-            </ListItem>
-          ) 
-        }
-        )}
-      </List>
-    </Drawer>
+    <>
+      <AppBar position="static" >
+        <Toolbar style={{backgroundColor: "white"}}>
+          {/*Precisa de um estado pra saber se esta clicado ou nao*/}
+          <IconButton onClick={() => handleDrawer(!open)}>
+            <MdMenu/>
+          </IconButton>
+          
+          <div className="headerIcons">
+            <IconButton>
+              <FaUserCircle/>
+            </IconButton>
+            <IconButton>
+              <FaShoppingBag/>
+            </IconButton>
+          </div>
+        </Toolbar>
+      </AppBar>
+
+
+
+      <Drawer open={open} onClose={() => {handleDrawer(false)}}>
+        <List className="lista">
+
+          {/**Faz um map para nao ter que repetir o mesmo processo
+            * com todos os itens da lista manualmente */}
+          {itensDaLista.map((item) => {
+            return(
+              <ListItem 
+              button 
+              onClick={() => handleClick(item.pathName)}
+              selected={currentPage === item.pathName}>
+              <ListItemIcon>
+                <IconContext.Provider value={{color: "#343434", size: "1.5em"}}>
+                  {item.icon}
+                </IconContext.Provider>
+              </ListItemIcon>
+              <ListItemText>
+                <Typography>
+                  {item.text}
+                </Typography>
+              </ListItemText>
+              </ListItem>
+            ) 
+          }
+          )}
+        </List>
+      </Drawer>
+    </>
   );
 }
 
