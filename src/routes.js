@@ -1,10 +1,11 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom"
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
 //^^^^Biblioteca de terceiros instalada para cuidar das rotas^^^^//
 
 import Cadastro from "./Pages/Cadastro";
 import Login from "./Pages/Login";
 import Home from "./Pages/Home";
+import Menu from "./Pages/Menu";
 
 //>>>>> ROTAS <<<<<//
 /** 
@@ -27,11 +28,27 @@ function Routes(){
   return(
     <BrowserRouter>
       <Switch>
-        <Route path="/login" component={Login}/>
-        <Route path="/cadastro" component={Cadastro}/>
-        <Route path="/home" component={Home}/>
+        <Route exact path="/login" component={Login}/>
+        <Route path="/" component={UserMenu}/>
+        <Route path="/" component={UserMenu}/>
       </Switch>
     </BrowserRouter>
+  )
+}
+
+//Todas as paginas que tem o menu, tem que ir no componente
+//Menu e passar as children como props
+function UserMenu(){
+  return(
+    <Menu>
+      <Switch>
+        <Route path="/home" component={Home}/>
+        <Route path="/cadastro" component={Cadastro}/>
+
+        {/*Se nao acha uma rota valida, volta pro login*/}
+        <Route component={() => <Redirect to="/login"/>}/>
+      </Switch>
+    </Menu>
   )
 }
 
