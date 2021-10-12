@@ -13,7 +13,7 @@ import "./Menu.css"
  * ele para que ele nao renderize sempre que mudar de pagina. Isso deixa
  * o sistema mais eficiente. Pra isso dar certo tem alguns detalhes no routes.js
  */
-function Menu(){
+function Menu(props){
 
   const history = useHistory();
   const [currentPage, setCurrentPage] = useState("/home");
@@ -55,6 +55,7 @@ function Menu(){
 
     <>
       <AppBar position="static" >
+     
         <Toolbar style={{backgroundColor: "white"}}>
           {/*Precisa de um estado pra saber se esta clicado ou nao*/}
           <IconButton onClick={() => handleDrawer(!open)}>
@@ -72,7 +73,7 @@ function Menu(){
         </Toolbar>
       </AppBar>
 
-
+      {props.children}
 
       <Drawer open={open} onClose={() => {handleDrawer(false)}}>
         <List className="lista">
